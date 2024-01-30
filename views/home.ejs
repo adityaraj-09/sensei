@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sensei</title>
     <style>
         *{
             margin: 0;
@@ -31,7 +31,12 @@
             height: 100%;
             object-fit: cover;
             border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+      cursor: pointer;
         }
+        .grid-wrapper > div > img:hover {
+      transform: scale(1.1);
+    }
         .grid-wrapper{
             display: grid;
             grid-gap: 10px;
@@ -55,6 +60,7 @@
     </style>
 </head>
 <body>
+    
    
     <div class="grid-wrapper">
        <% imgs.forEach(element => { %>

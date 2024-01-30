@@ -15,7 +15,7 @@ photoRouter.get("/home",async (req,res)=>{
     try {
         const photos=await Photo.find({});
         console.log(photos)
-        res.render("home",{imgs:photos})
+        res.render("index",{imgs:photos})
     } catch (error) {
         res.status(500).json(error)
     }

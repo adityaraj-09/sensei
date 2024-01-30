@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 
 // Set the directory where your EJS templates are located
 app.set('views', __dirname + '/views'); 
+app.use(express.static('public'));
 
 mongoose.connect(process.env.DB).then(async()=>{
     console.log("connected to mongodb")
