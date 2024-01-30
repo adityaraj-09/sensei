@@ -9,7 +9,9 @@ const multer=require("multer")
 const storage = multer.memoryStorage();
 const upload = multer({ dest: "./upload" });
 
-
+photoRouter.get("/test",async (req,res)=>{
+    res.status(200).send("Hello")
+})
 
 photoRouter.get("/",async (req,res)=>{
     try {
