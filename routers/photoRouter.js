@@ -11,7 +11,7 @@ const upload = multer({ dest: "./upload" });
 
 
 
-photoRouter.get("/home",async (req,res)=>{
+photoRouter.get("/",async (req,res)=>{
     try {
         const photos=await Photo.find({});
         console.log(photos)
