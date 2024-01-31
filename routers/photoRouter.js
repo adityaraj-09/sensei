@@ -24,6 +24,15 @@ photoRouter.get("/",async (req,res)=>{
     }
    
 })
+photoRouter.get("/albums",async (req,res)=>{
+    try {
+        const albums=await Album.find({});
+        
+        res.status(200).json(albums)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 photoRouter.post("/upload",async (req,res)=>{
     try {
         const {url,type,by}=req.body
