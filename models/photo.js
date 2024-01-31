@@ -11,6 +11,10 @@ const photosch=mongoose.Schema({
     type:{
         type:String,
         required:true 
+    },
+    by:{
+        type:String,
+       default:""
     }
 })
 
