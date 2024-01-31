@@ -17,7 +17,7 @@ photoRouter.get("/test",async (req,res)=>{
 photoRouter.get("/",async (req,res)=>{
     try {
         const photos=await Photo.find({});
-        console.log(photos)
+       
         res.render("index",{imgs:photos})
     } catch (error) {
         res.status(500).json(error)
@@ -27,7 +27,7 @@ photoRouter.get("/",async (req,res)=>{
 photoRouter.get("/albums",async (req,res)=>{
     try {
         const albums=await Album.find({});
-        
+
         res.status(200).json(albums)
     } catch (error) {
         res.status(500).json(error)

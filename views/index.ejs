@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sensei</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="/dist/css/style.css">
     <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <style>
@@ -32,11 +34,13 @@
       cursor: pointer;
         }
         .grid-wrapper > div > img:hover {
-      transform: scale(1.1);
+      transform: scale(2);
+      object-fit: contain;
+      
     }
         .grid-wrapper{
             display: grid;
-            width: 80%;
+            width: 100%;
             margin: auto;
             grid-gap: 10px;
             grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
@@ -55,6 +59,40 @@
             grid-column: span 2;
             grid-row: span 2;
         }
+        #clicked{
+            width: 80%;
+            position: relative;
+            margin: auto;
+        }
+        .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .modal img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
     </style>
 </head>
 <body class="is-boxed has-animations">
@@ -78,9 +116,9 @@
                 <div class="container">
                     <div class="hero-inner">
 						<div class="hero-copy">
-	                        <h1 class="hero-title mt-0">SENSEI.CLICKS</h1>
+	                        <h1 class="hero-title mt-0">SENSEI.CLICKS </h1>
 	                        <p class="hero-paragraph">Discovering the beauty of the world through my lens.</p>
-	                        <div class="hero-cta"><a class="button button-primary" href="#">view</a><a class="button" href="https://www.instagram.com/adi.tya_57">Get in touch</a></div>
+	                        <div class="hero-cta"><a class="button button-primary" href="#">view</a><a class="button" href="https://www.instagram.com/adi.tya_57">Get in touch <i class="uil uil-instagram-alt"></i></a></div>
 						</div>
 						<div class="hero-figure anime-element">
 							<svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
@@ -100,16 +138,25 @@
                     </div>
                 </div>
             </section>
+            <section id="clicked">
+                <div class="modal" id="myModal">
+                    <div class="modal-content">
+                      <span class="close-button" onclick="closeModal()">&times;</span>
+                      <img id="modalImage" src="" alt="Full Image">
+                    </div>
+                  </div>
 
-            <div class="grid-wrapper features section">
-                <% imgs.forEach(element => { %>
-                 <div >
-                   
-                     <img src=<%= element.url %> alt="">
+                <h2>Clicks <i class="uil uil-shutter-alt"></i></h2>
+                <div class="grid-wrapper features section">
+                    <% imgs.slice(0, 8).forEach(element => { %>
+                     <div onclick="openModal('<%= element.url %>')">
+                       
+                         <img src=<%= element.url %> alt="">
+                     </div>
+                    <% }) %>
+                     
                  </div>
-                <% }) %>
-                 
-             </div>
+            </section>
 
             <section class="features section">
                 <div class="container">
@@ -280,6 +327,26 @@
         </footer>
     </div>
 
-    <script src="/dist/js/main.min.js"></script>
+    <script src="/dist/js/main.min.js">
+        document.addEventListener('DOMContentLoaded', function() {
+            window.openModal=  function(imageUrl) {
+    document.getElementById('modalImage').src = imageUrl;
+    document.getElementById('myModal').style.display = 'flex';
+  }
+
+  window.closeModal=function() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Close the modal when clicking outside the image
+  window.onclick = function (event) {
+    if (event.target === document.getElementById('myModal')) {
+      closeModal();
+    }
+  };
+        })
+         
+
+    </script>
 </body>
 </html>
