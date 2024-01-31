@@ -13,6 +13,12 @@
 	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <style>
+        body{
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            box-sizing: border-box;
+        }
         img{
             max-width: 100%;
             height: auto;
@@ -61,24 +67,30 @@
         }
         #clicked{
             width: 80%;
+           
             position: relative;
             margin: auto;
         }
+
         .modal {
+            z-index: 1000;
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      margin: auto;
+   position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      width: 100vh;
+      height:100vw;
       background-color: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
     }
 
-    .modal-content {
-      max-width: 80%;
-      max-height: 80%;
+    .modal-content{
+        width: 80%;
+        height: 80%;
+        position: relative;
     }
 
     .modal img {
@@ -96,6 +108,12 @@
     </style>
 </head>
 <body class="is-boxed has-animations">
+    <!-- <div class="modal" id="myModal">
+        <div class="modal-content">
+          <span class="close-button" onclick="closeModal()">&times;</span>
+          <img id="modalImage" src="" alt="Full Image">
+        </div>
+      </div> -->
     <div class="body-wrap">
         <header class="site-header">
             <div class="container">
@@ -103,7 +121,7 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
 							<a href="#">
-								<img class="header-logo-image" src="dist/images/logo.svg" alt="Logo">
+								<img class="header-logo-image" src="dist/images/logo.svg" alt="Logo" >
                             </a>
                         </h1>
                     </div>
@@ -139,23 +157,21 @@
                 </div>
             </section>
             <section id="clicked">
-                <div class="modal" id="myModal">
-                    <div class="modal-content">
-                      <span class="close-button" onclick="closeModal()">&times;</span>
-                      <img id="modalImage" src="" alt="Full Image">
-                    </div>
-                  </div>
+               
 
                 <h2>Clicks <i class="uil uil-shutter-alt"></i></h2>
-                <div class="grid-wrapper features section">
+                <div class="grid-wrapper features section" id="imageContainer">
                     <% imgs.slice(0, 8).forEach(element => { %>
-                     <div onclick="openModal('<%= element.url %>')">
+                     <div class="grid-item">
                        
                          <img src=<%= element.url %> alt="">
                      </div>
                     <% }) %>
                      
                  </div>
+                 <a class="button button-primary" onclick="loadMoreImages('<%= JSON.stringify(imgs) %>')" style="margin-top: 10px;">Load More</a>
+                 
+                 
             </section>
 
             <section class="features section">
@@ -328,7 +344,48 @@
     </div>
 
     <script src="/dist/js/main.min.js">
-        document.addEventListener('DOMContentLoaded', function() {
+       
+         
+
+    </script>
+    <script>
+        // Simulated list of all images
+        
+      
+        // Function to load more images
+        function loadMoreImages(imgs) {
+            const allimgs=JSON.parse(imgs)
+          const imageContainer = document.getElementById('imageContainer');
+      
+          // Determine the range of images to load (e.g., 8 more images)
+          const startIndex = imageContainer.children.length;
+          const endIndex = startIndex + 8;
+      
+          // Append new images to the container
+          allimgs.slice(startIndex, endIndex).forEach((element, index) => {
+            const newImage = document.createElement('div');
+            newImage.classList.add('grid-item');
+            newImage.onclick = function () {
+              openModal(element.url);
+            };
+      
+            const imgElement = document.createElement('img');
+            imgElement.src = element.url;
+            imgElement.alt = 'Image ' + (startIndex + index + 1);
+      
+            newImage.appendChild(imgElement);
+            imageContainer.appendChild(newImage);
+          });
+        }
+      
+        // Function to open the modal (replace this with your modal logic)
+        function openModal(imageUrl) {
+          // Your modal logic here
+          console.log('Opening modal for image:', imageUrl);
+        }
+      </script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
             window.openModal=  function(imageUrl) {
     document.getElementById('modalImage').src = imageUrl;
     document.getElementById('myModal').style.display = 'flex';
@@ -345,8 +402,6 @@
     }
   };
         })
-         
-
     </script>
 </body>
 </html>
