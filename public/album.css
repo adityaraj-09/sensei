@@ -4,7 +4,7 @@
 body{
     width: 100vw;
     margin: 0;
-    overflow: hidden;
+  
     color: white;
     padding: 0;
     background-color: #242830;
@@ -82,11 +82,99 @@ nav.logo_box{
 .box-slides .slide{
     height: 200px;
     flex-shrink: 0; 
-    
+    position: relative;
     width: 250px;
 }
 .box-slides .slide img{
     height: 200px;
+   
     object-fit: cover;
+   
     width: 250px; 
+}
+.overlay{
+    position: absolute;
+    height: 200px;
+    top: 0;
+    left: 0;
+    background-color:rgb(255, 255, 255);
+    opacity: 0.6;
+    width: 250px; 
+    z-index: 2;
+}
+.overlay:hover{
+    opacity: 1;
+}
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #242830;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 3;
+    text-overflow: ellipsis;
+    width:100%; 
+    /* Additional styling as needed */
+}
+.container-albums{
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+}
+.box-albums{
+   
+    width: 80%;
+    margin: auto;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    
+    position: relative;
+    padding-top: 30px;
+    gap: 10px;
+   flex-direction: row;
+}
+.box-albums h2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+.box-album{
+    min-width: 100px;
+    width: max-content;
+    height: max-content;
+    display: flex;
+   overflow: hidden;
+    justify-content: center;
+    align-items: center;
+   border-radius: 5px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    padding: 5px;
+    color: white;
+    background-color: #687c9f;
+}
+.box-album:hover{
+    border: 1px solid white;
+}
+.box-album img{
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
+}
+
+@media screen and (max-width:400px){
+    .box-albums{
+        justify-content: center;
+    align-items: center;
+    }
 }

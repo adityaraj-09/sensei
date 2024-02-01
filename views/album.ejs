@@ -23,15 +23,49 @@
           </nav>
           <section class="container-slides">
             <div class="box-slides">
-                <% imgs.slice(0, 15).forEach(element => { %>
+                <% imgs.forEach((element, index) => { %>
                     <div class="slide">
                       
                         <img src=<%= element.url %> alt="">
+                        <div class="overlay"></div>
+                        <div class="overlay-text"><%= quote[index].q %></div>
+    
                     </div>
                    <% }) %>
             </div>
 
           </section>
-
+          <section class="container-albums">
+              <div class="box-albums">
+                <h2>Albums <i class="uil uil-scenery"></i></h2>
+                
+                <% albums.forEach(element => { %>
+                    <div class="box-album" data-album-id="<%= element._id %>">
+                        <h3><%= element.title %></h3>
+                        
+                    </div>
+                <% }) %>
+            </div>
+          </section>
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Fetch images and dynamically add them to the corresponding box-album elements
+                const boxAlbums = document.querySelectorAll('.box-album');
+        
+                boxAlbums.forEach(boxAlbum => {
+                    const albumId = boxAlbum.getAttribute('data-album-id');
+                    fetch(`http://localhost:8000/getAlbumById/${albumId}`)
+                        .then(response => response.json())
+                        .then(image => {
+                            
+                                const imgElement = document.createElement('img');
+                                imgElement.src = image.url;
+                                boxAlbum.appendChild(imgElement);
+                            
+                        })
+                        .catch(error => console.error('Error fetching images:', error));
+                });
+            });
+        </script>
 </body>
 </html>

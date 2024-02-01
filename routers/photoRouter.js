@@ -24,12 +24,27 @@ photoRouter.get("/",async (req,res)=>{
     }
    
 })
-
-photoRouter.get("/viewAlbums",async (req,res)=>{
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+photoRouter.get("/view",async (req,res)=>{
     try {
-       
+        const api_url ="https://zenquotes.io/api/quotes/";
+        
+        async function getapi(url)
+        {
+          const response = await fetch(url);
+          var data = await response.json();
+          return data.slice(0,5)
+        }
+        const t=await getapi(api_url)
         const photos=await Photo.find({});
-        res.render("album",{imgs:photos})
+        const albums=await Album.find({})
+        const randomIndices = Array.from({ length: 5 }, () => getRandomInt(0, photos.length - 1));
+
+  // Extract 5 random images
+  const randomImages = randomIndices.map(index => photos[index]);
+        res.render("album",{imgs:randomImages,quote:t,albums:albums})
     } catch (error) {
         res.status(500).json(error)
     }
@@ -39,6 +54,16 @@ photoRouter.get("/albums",async (req,res)=>{
         const albums=await Album.find({});
 
         res.status(200).json(albums)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+photoRouter.get("/getAlbumById/:id",async (req,res)=>{
+    try {
+        const {id}=req.params
+        const album=await Album.findById(id);
+        const photo=await Photo.findById(album.photos[0])
+        res.status(200).json(photo)
     } catch (error) {
         res.status(500).json(error)
     }
