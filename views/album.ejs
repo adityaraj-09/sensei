@@ -54,7 +54,7 @@
         
                 boxAlbums.forEach(boxAlbum => {
                     const albumId = boxAlbum.getAttribute('data-album-id');
-                    fetch(`http://localhost:8000/getAlbumById/${albumId}`)
+                    fetch(`/getAlbumById/${albumId}`)
                         .then(response => response.json())
                         .then(image => {
                             
