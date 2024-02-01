@@ -1,3 +1,92 @@
-*{
-    background-color: #1D2026;
+::-webkit-scrollbar {
+    display: none;
+}
+body{
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+    color: white;
+    padding: 0;
+    background-color: #242830;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+nav{
+   
+    padding: 10px 40px ;
+    box-shadow:   2px 0 4px 0 #0000001a;
+    display: flex;
+    background: #22293a;
+    justify-content: space-between;
+}
+nav .searchbar{
+  box-shadow:   2px 0 4px 0 #0000001a;
+  display: flex;
+  padding: 5px;
+
+  width: max-content;
+  background-color:#687c9f ;
+  border-radius: 10px;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.searchbar i{
+    position: absolute;
+    left: 20px;
+}
+nav input{
+    background-color:#242830 ;
+    border: none;
+    height: 35px;
+    color: black;
+   text-align: center;
+   color: white;
+    border-radius: 10px;
+}
+nav input:focus{
+    outline: none;
+}
+strong,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.logo_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+nav.logo_box{
+    height: max-content;
+    width: max-content;
+}
+.container-slides{
+   padding: 20px 0;
+    width: 100%;
+    display: flex;
+    height: max-content;
+}
+.box-slides{
+    width: 80%;
+    margin: auto;
+    overflow-y: hidden;
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+    overflow-x: scroll;
+    gap: 20px;
+}
+.box-slides .slide{
+    height: 200px;
+    flex-shrink: 0; 
+    
+    width: 250px;
+}
+.box-slides .slide img{
+    height: 200px;
+    object-fit: cover;
+    width: 250px; 
 }

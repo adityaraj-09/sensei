@@ -27,11 +27,9 @@ photoRouter.get("/",async (req,res)=>{
 
 photoRouter.get("/viewAlbums",async (req,res)=>{
     try {
-        const photos=await Photo.find({});
-        const albums=await Album.find({});
-
        
-        res.render("album",{imgs:photos,albums:albums})
+        const photos=await Photo.find({});
+        res.render("album",{imgs:photos})
     } catch (error) {
         res.status(500).json(error)
     }

@@ -4,12 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>albums</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="/album.css">
-    
+   
 </head>
-<body>
     
+<body>
+   
+    <nav  >
+        <div class='logo_box' ><img src="/logo.png" alt=""> <strong>SENSEI</strong></div>
+        <div class='searchbar'>
+          
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder='search'/></div>
+        
+          </nav>
+          <section class="container-slides">
+            <div class="box-slides">
+                <% imgs.slice(0, 15).forEach(element => { %>
+                    <div class="slide">
+                      
+                        <img src=<%= element.url %> alt="">
+                    </div>
+                   <% }) %>
+            </div>
+
+          </section>
 
 </body>
 </html>
