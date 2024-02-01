@@ -7,7 +7,7 @@ body{
   
     color: white;
     padding: 0;
-    background-color: #242830;
+    background-color: black;
     overflow-x: hidden;
     box-sizing: border-box;
 }
@@ -65,12 +65,14 @@ nav.logo_box{
 }
 .container-slides{
    padding: 20px 0;
+   color: white;
     width: 100%;
     display: flex;
     height: max-content;
 }
 .box-slides{
     width: 80%;
+    color: white;
     margin: auto;
     overflow-y: hidden;
     display: flex;
@@ -107,6 +109,7 @@ nav.logo_box{
 }
 .overlay-text {
     position: absolute;
+  
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>albums</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-snapx-photography.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="/album.css">
    
@@ -21,6 +30,73 @@
             <input type="text" placeholder='search'/></div>
         
           </nav>
+          <div class="page-heading">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 offset-lg-2 header-text">
+                  <h2>Discover Most Popular Categories on <em>Sensei</em></h2>
+                  <p>view the best out of me</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top-categories">
+            <div class="container">
+              <div class="row">
+                <% albums.slice(0,5).forEach((album,i) => { %>
+                    <div class="col-lg col-sm-4">
+                        <div class="item">
+                          <div class="icon">
+                            <img src="assets/images/icon-0<%= i+1  %>.png" alt="">
+                          </div>
+                          <h4><%= album.title  %></h4>
+                          <span>Available Images</span>
+                          <span class="counter"><%= album.photos.length %></span>
+                        </div>
+                      </div>
+                <% }) %>
+                
+              </div>
+            </div>
+          </div>
+          <section class="featured-contests">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="section-heading text-center">
+                    <h6>Featured Albums</h6>
+                    <h4>View Most <em>Popular</em> Category <em>Albums</em></h4>
+                  </div>
+                </div>
+                <% albums.forEach(album => { %>
+                    <div class="col-lg-4">
+                        <div class="item">
+                          <div class="thumb">
+                            <img src="assets/images/featured-image-03.jpg" alt="" class="albumcover" data-album-id="<%= album._id  %>">
+                            <div class="hover-effect">
+                              <div class="content">
+                                <div class="top-content">
+                                  <span class="award">Count</span>
+                                  <span class="price"><%= album.photos.length %></span>
+                                </div>
+                                <h4><%= album.title  %></h4>
+                                <div class="info">
+                                  <span class="participants"><img src="assets//images/icon-03.png" alt=""><br>112<br>Participants</span>
+                                  <span class="submittions"><img src="assets//images/icon-01.png" alt=""><br>286<br>Submissions</span>
+                                </div>
+                                <div class="border-button">
+                                  <a href="contest-details.html">Browse <%= album.title  %> Photos</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                <% }) %>
+                
+              </div>
+            </div>
+          </section>
           <section class="container-slides">
             <div class="box-slides">
                 <% imgs.forEach((element, index) => { %>
@@ -35,7 +111,7 @@
             </div>
 
           </section>
-          <section class="container-albums">
+          <!-- <section class="container-albums">
               <div class="box-albums">
                 <h2>Albums <i class="uil uil-scenery"></i></h2>
                 
@@ -46,11 +122,11 @@
                     </div>
                 <% }) %>
             </div>
-          </section>
+          </section> -->
           <script>
             document.addEventListener('DOMContentLoaded', () => {
                 // Fetch images and dynamically add them to the corresponding box-album elements
-                const boxAlbums = document.querySelectorAll('.box-album');
+                const boxAlbums = document.querySelectorAll('.albumcover');
         
                 boxAlbums.forEach(boxAlbum => {
                     const albumId = boxAlbum.getAttribute('data-album-id');
@@ -58,9 +134,7 @@
                         .then(response => response.json())
                         .then(image => {
                             
-                                const imgElement = document.createElement('img');
-                                imgElement.src = image.url;
-                                boxAlbum.appendChild(imgElement);
+                                boxAlbum.src=image.url
                             
                         })
                         .catch(error => console.error('Error fetching images:', error));
