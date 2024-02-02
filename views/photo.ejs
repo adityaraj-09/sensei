@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-snapx-photography.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/photo.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <title><%= title %></title>
+    <style>
+        .page-heading1 {
+  background-image: url(/assets//images/banner-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-top: 200px;
+  padding-bottom: 130px;
+  text-align: center;
+  background-color: #2a2a2a;
+}
+
+.page-heading1 h2 {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 74px;
+}
+
+.page-heading1 h2.space-need {
+  padding: 0px 30px;
+}
+
+.page-heading1 h2 em {
+  font-style: normal;
+  color: #00bdfe;
+}
+
+.page-heading1 p {
+  color: #fff;
+  padding: 30px 0px;
+  margin: 40px 75px 0px 75px;
+  border-top: 2px solid rgba(250,250,250,0.2);
+}
+
+.page-heading1 h6 {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid rgba(250,250,250,0.2);
+  font-size: 20px;
+  color: #fff;
+}
+
+.page-heading1 .main-content {
+  margin-top: 30px;
+}
+
+.page-heading1 .main-content .days, .page-heading1 .main-content .hours, .page-heading1 .main-content .minutes, .page-heading1 .main-content .seconds {
+  width: 20%;
+}
+.page-heading1 .main-content .counter div {
+  margin: 0 2px;
+  display: inline-block;
+  text-align: center; 
+}
+@media (min-width: 992px) {
+  .page-heading1 .main-content .counter div {
+    margin: 0px 10px; 
+  } 
+}
+.page-heading1 .main-content .counter div .value {
+  font-size: 50px;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative; 
+}
+
+.page-heading1 .main-content .counter div span {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+    </style>
+</head>
+<body>
+    <nav  >
+        <div class='logo_box' ><img src="/logo.png" alt=""> <strong>SENSEI</strong></div>
+        <div class='searchbar'>
+          
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder='search'/></div>
+        
+          </nav>
+          <div class="page-heading1">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 offset-lg-2 header-text">
+                  <h2>View <%= title %> Photos and <em>Download Photos</em></h2>
+                  <p>If you wish to <a rel="nofollow" href="https://www.instagram.com/sensei.clicks/" target="_blank">support Sensei</a> follow instagram page,Thank you.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+  <section class="portfolio">
+    <div class="container">
+      <div class="row">
+        <% photos.forEach(photo => { %>
+            <div class="col-lg-3">
+                <div class="thumb">
+                  <img src=<%= photo.url %> alt="">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <h4><%= photo.type  %></h4>
+                      <span>Ranked: <em>2nd</em></span>
+                      <span>Award Won: <em>None</em></span>
+                      <ul>
+                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                        <li><a href=<%= photo.url  %> download=<%= photo.type %>><i class="fa fa-eye"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <% }) %>
+        
+       
+      </div>
+    </div>
+  </section>
+        
+          <footer>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p>Copyright © 2048 <a href="#">SnapX</a> Photo Contest Co., Ltd. All rights reserved. 
+                  
+                  Design: <a title="CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/popup.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+    
+</body>
+</html>

@@ -68,6 +68,27 @@ photoRouter.get("/getAlbumById/:id",async (req,res)=>{
         res.status(500).json(error)
     }
 })
+photoRouter.get("/view/:title",async (req,res)=>{
+    try {
+        const{title}=req.params
+        const photos=await Photo.find({type:title})
+
+        res.render("photo",{photos,title})
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+photoRouter.get("/contact",async (req,res)=>{
+    try {
+        
+
+        res.render("contact")
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 photoRouter.post("/upload",async (req,res)=>{
     try {
         const {url,type,by}=req.body
