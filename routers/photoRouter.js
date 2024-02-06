@@ -62,7 +62,8 @@ photoRouter.get("/getAlbumById/:id",async (req,res)=>{
     try {
         const {id}=req.params
         const album=await Album.findById(id);
-        const photo=await Photo.findById(album.photos[0])
+        let d=album.photos.length-1
+        const photo=await Photo.findById(album.photos[d])
         res.status(200).json(photo)
     } catch (error) {
         res.status(500).json(error)
