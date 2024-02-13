@@ -41,21 +41,21 @@
                   <div class="info-item">
                     <i class="fa fa-phone"></i>
                     <h4>Phone Numbers</h4>
-                    <span><a href="#">010-020-0340</a><br><a href="#">090-080-0760</a></span>
+                    <span><a href="#">+91 9341246568</a><br><a href="#">+91 9341246568</a></span>
                   </div>  
                 </div>
                 <div class="col-lg-4">
                   <div class="info-item">
                     <i class="fa fa-envelope"></i>
                     <h4>Email Addresses</h4>
-                    <span><a href="#">info@company.com</a><br><a href="#">SnapX@company.com</a></span>
+                    <span><a href="#">adi.ee.iitd@gmail.com</a><br><a href="#">Sensei</a></span>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="info-item">
                     <i class="fa fa-map-marked"></i>
-                    <h4>Office Location</h4>
-                    <span><a href="#">155 Michigan Ave, Chicago,<br>IL 60601, United States</a></span>
+                    <h4> Location</h4>
+                    <span><a href="#">IIT DELHI<br>Delhi,India</a></span>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -68,12 +68,12 @@
                       </div>
                       <div class="col-lg-6">
                         <fieldset>
-                          <input type="text" name="telephone" id="telephone" placeholder="Your Telephone..." autocomplete="on" required>
+                          <input type="number" name="phone" id="telephone" placeholder="Your Telephone..." autocomplete="on">
                         </fieldset>
                       </div>
                       <div class="col-lg-6">
                         <fieldset>
-                          <input type="email" name="email" id="email" placeholder="Your E-mail..." required="">
+                          <input type="email" name="email" id="email" placeholder="Your E-mail..." >
                         </fieldset>
                       </div>
                       <div class="col-lg-6">
@@ -83,7 +83,7 @@
                       </div>
                       <div class="col-lg-12">
                         <fieldset>
-                          <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                          <textarea name="body" id="body" placeholder="Your Message" required></textarea>
                         </fieldset>
                       </div>
                       <div class="col-lg-12">
@@ -102,13 +102,48 @@
             <div class="container">
               <div class="row">
                 <div class="col-lg-12">
-                  <p>Copyright © 2048 <a href="#">SnapX</a> Photo Contest Co., Ltd. All rights reserved. 
+                  <p>Copyright © 2024 <a href="#">SENSEI</a>Ltd. All rights reserved. 
                   
-                  Design: <a title="CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+                 
                 </div>
               </div>
             </div>
           </footer>
+          <script>
+            document.getElementById('contact').addEventListener('submit', function(event) {
+              event.preventDefault(); // Prevent form submission
+        
+              // Get form data
+              const formData = new FormData(this);
+        
+              // Convert formData to JSON
+              const formDataJSON = {};
+              formData.forEach((value, key) => formDataJSON[key] = value);
+        
+              // Make API request
+              fetch('/msg', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataJSON)
+              })
+              .then(response => {
+                if (response.ok) {
+                  alert('Message sent successfully!');
+                  // Optionally, clear form fields
+                  this.reset();
+                } else {
+                  throw Error(response.json)
+                  alert('Failed to send message. Please try again later.');
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send message. Please try again later.');
+              });
+            });
+          </script>
           <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -117,7 +152,7 @@
   
   <script src="/assets/js/tabs.js"></script>
   <script src="/assets/js/popup.js"></script>
-  <script src="/assets/js/custom.js"></script>
+ 
 
     
 </body>

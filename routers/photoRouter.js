@@ -4,11 +4,25 @@ const express = require("express");
 const ejs = require('ejs');
 const path = require('path');
 const Photo=require("../models/photo")
+const Message=require("../models/message")
 const Album=require("../models/Album")
 const photoRouter = express.Router();
 const multer=require("multer")
 const storage = multer.memoryStorage();
 const upload = multer({ dest: "./upload" });
+
+
+photoRouter.post("/msg",async (req,res)=>{
+    try {
+        
+        let msg=new Message(req.body)
+        msg=await msg.save()
+        res.status(200).json(msg)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+})
 
 photoRouter.get("/test",async (req,res)=>{
     res.status(200).send("Hello")
