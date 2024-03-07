@@ -30,7 +30,7 @@ photoRouter.get("/test",async (req,res)=>{
 
 photoRouter.get("/",async (req,res)=>{
     try {
-        const photos=await Photo.find({});
+        const photos=await Photo.find().sort({ createdAt: -1 });
        
         res.render("index",{imgs:photos})
     } catch (error) {
